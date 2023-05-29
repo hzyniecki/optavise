@@ -1,0 +1,54 @@
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: auto;
+  width: 50%;
+}
+
+.card-container {
+  background-color: #fff;
+  padding: 2px 16px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 400px;
+  height: 150px;
+  border-radius: 5px;
+}
+
+.full-name {
+  color: #383e4a;
+  font-weight: bold;
+}
+
+.position {
+  color: #bec2ca;
+}
+
+.tags-margin {
+  margin-top: 10px;
+}
+
+.department, .marital-status, .vip-tag  {
+  padding: 5px 8px 5px 8px;
+  font-weight: bold;
+  border-radius: 25px;
+  margin-top: 10px;
+}
+
+.marital-status, .department {
+  background-color: #dbeafe;
+  color: #5e79ca;
+}
+
+.margin-left {
+  margin-left: 5px;
+}
+
+.vip-tag {
+  color: #d7a985;
+  background-color: #fde7de;
+}
+
+

@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  optaviseUrlV2: 'https://209.217.95.19:18100/api/v2',
+  optavisePngUrl: 'https://209.217.95.19:18100'
 };
 
 /*

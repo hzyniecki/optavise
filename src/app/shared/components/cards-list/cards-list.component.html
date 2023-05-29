@@ -1,0 +1,15 @@
+<div class="card-grid">
+  <div *ngFor="let employees of employeesList" class="card-container">
+    <!-- <img alt="avatar-png" src={employees.avatar} /> -->
+    <!-- {{employees.avatar}} -->
+    <div class="full-name">{{employees.firstName}} {{employees.lastName}}</div>
+    <div class="position">{{employees.position}}</div>
+    <div class="tags-margin">
+    <span class="department"> {{employees.department}} </span>
+    <span *ngIf="employees.married" class="marital-status margin-left"> Married </span>
+    <span class="vip-tag margin-left">VIP</span>
+    </div>
+    <!-- #Fix Need to add vip capabilities -->
+  </div>
+</div>
+

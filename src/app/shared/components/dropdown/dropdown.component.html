@@ -1,0 +1,12 @@
+<div  class="dropdown-btn" (click)="toggleDropdown()">
+  {{ selectedOption }}
+<span>
+  <img class="caret" alt="caret" src="../assets/svgs/expand-more-caret.svg" />
+</span>
+</div>
+<ul class="dropdown-menu" *ngIf="dropdownActive">
+  <li *ngFor="let option of options" (click)="selectDropdownOption(option)">
+    {{ option }}
+  </li>
+</ul>
+
