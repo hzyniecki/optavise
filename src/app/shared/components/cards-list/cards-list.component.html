@@ -1,15 +1,16 @@
 <div class="card-grid">
-  <div *ngFor="let employees of employeesList" class="card-container">
-    <!-- <img alt="avatar-png" src={employees.avatar} /> -->
-    <!-- {{employees.avatar}} -->
-    <div class="full-name">{{employees.firstName}} {{employees.lastName}}</div>
-    <div class="position">{{employees.position}}</div>
-    <div class="tags-margin">
-    <span class="department"> {{employees.department}} </span>
-    <span *ngIf="employees.married" class="marital-status margin-left"> Married </span>
-    <span class="vip-tag margin-left">VIP</span>
+  <div *ngFor="let employee of employeesList$ | async" class="card-container">
+    <div class="avatar-container">
+      <img class="avatar" [src]="buildPngSrc(employee)" alt="Employee Avatar"  />
     </div>
-    <!-- #Fix Need to add vip capabilities -->
+    <div class="employee-details-container">
+      <div class="full-name">{{employee.firstName}} {{employee.lastName}}</div>
+      <div class="position">{{employee.position}}</div>
+      <div class="tags-margin">
+        <span class="department"> {{employee.department}} </span>
+        <span *ngIf="employee.married" class="marital-status margin-left"> Married </span>
+        <span class="vip-tag margin-left" [ngStyle]="{visibility:hasVipStatus(employee) ? 'visible' : 'hidden'}"> VIP </span>
+    </div>
+  </div>
   </div>
 </div>
-

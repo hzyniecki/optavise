@@ -1,18 +1,12 @@
 <div class="title-container">
-  <span class="employees"> Employees
-  </span>
-<optavise-dropdown class="department-dropdown"
-[defaultOption]="departmentDropdownDefault"
-[options]="dropdownOptions | async"
-(optionSelected)="selectDepartment($event)"></optavise-dropdown>
+  <span class="employees"> Employees</span>
+  <optavise-dropdown class="department-dropdown"
+  [defaultOption]="departmentDropdownDefault"
+  [options]="departmentDropDownOptions$ | async"
+  (optionSelected)="selectDepartment($event)"></optavise-dropdown>
 </div>
-<!-- <optavise-cards-list [employeesList]="departments$| async"></optavise-cards-list> -->
-
-<optavise-cards-list [employeesList]="executiveDepartment$ | async"></optavise-cards-list>
-
-<!-- #FIX add ng-if logic here -->
-<optavise-cards-list [employeesList]="supportDepartment$ | async"></optavise-cards-list>
-
+<hr>
+ <optavise-cards-list [employeesList$]="availableEmployees$"></optavise-cards-list>
 
 
   <!-- Footer -->

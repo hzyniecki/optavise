@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'optavise-dropdown',
@@ -25,12 +25,10 @@ export class DropdownComponent implements OnInit {
   }
 
   toggleDropdown() {
-    console.log('...........');
     this.dropdownActive = !this.dropdownActive;
   }
 
   selectDropdownOption(option: string) {
-    console.log('vhhhtvthtft');
     this.selectedOption = option;
     this.optionSelected.emit(option);
     this.dropdownActive = false;

@@ -15,6 +15,17 @@
   width: 400px;
   height: 150px;
   border-radius: 5px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: start;
+  padding-top: 10px;
+}
+
+.employee-details-container {
+  grid-column: 2 ;
+  grid-row: 1;
+  margin-left: 33px;
+  margin-top: 13px;
 }
 
 .full-name {
@@ -49,6 +60,17 @@
 .vip-tag {
   color: #d7a985;
   background-color: #fde7de;
+}
+
+.avatar-container {
+  grid-column: 1 ;
+  grid-row: 1;
+}
+
+.avatar {
+  border-radius: 5px;
+  height: 140px;
+  width: 140px;
 }
 
 

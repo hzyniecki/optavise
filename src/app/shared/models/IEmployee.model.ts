@@ -9,7 +9,3 @@ export interface IEmployee {
   married: boolean;
   avatar: string;
 }
-//#toFix??
-export function sortbyDescDate(objA: IEmployee, objB: IEmployee) {
-  return new Date(objB.dateOfHire).getTime() - new Date(objA.dateOfHire).getTime();
-}

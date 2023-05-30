@@ -1,69 +1,51 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeesService } from './core/services/employees.service';
-import { DepartmentsService } from './core/services/departments.service';
-import { Observable, catchError, shareReplay, throwError  } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
-import { EmployeesStore } from './shared/employees.store';
-import { IEmployee } from './shared/models/employeesRaw.model';
-import { HttpResponse } from '@angular/common/http';
+import { IEmployee } from './shared/models/IEmployee.model';
+import { EmployeesStore } from './core/store/employees.store';
+import { DepartmentsStore } from './core/store/departments.store';
 
 @Component({
   selector: 'optavise-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class HomeComponent implements OnInit  {
+export class HomeComponent implements OnInit {
 
-  allEmployees$!: Observable<IEmployee[]>;
+  availableEmployees$!: Observable<IEmployee[]>;
 
-  executiveDepartment$!: Observable<IEmployee[]>;
-
-  supportDepartment$!: Observable<IEmployee[]>;
-
-  departments$!: Observable<string[]>;
-
-
-  //#Fix Dropdown options needs to be populated with the departments list call
-  dropdownOptions: any = this.departments$;
+  departmentDropDownOptions$!: Observable<string[]>;
 
   departmentDropdownDefault: string = 'All Departments';
 
-  constructor(public employeesService: EmployeesService,
-    public departmentsService: DepartmentsService,
-    private employeesStore: EmployeesStore
-    ) {
-      this.loadEmployees();
-      this.filterEmployees();
-    }
+  constructor(public departmentsService: DepartmentsStore, private employeesStore: EmployeesStore
+  ) { }
 
   ngOnInit() {
-
-   this.departments$ = this.departmentsService.departmentsGetRequest();
+    this.departmentDropDownOptions$ = this.departmentsService.$departments.pipe(
+      map(depts => {
+        depts.unshift(this.departmentDropdownDefault);
+        return depts;
+      })
+    );
+    this.setEmployeeList(this.employeesStore.employees$);
   }
 
-  loadEmployees() {
-    this.employeesService.employeeGetRequest().pipe(
-      catchError(err => {
-        const message = 'Failed to load Employees';
-        console.log(message, err);
-        return throwError(() => new Error(err));
-      }),
-    )
-  }
-
-  //#Fix Need to send through parameters on click through the drop down
-  filterEmployees() {
-    this.executiveDepartment$ = this.employeesStore.filterByDepartment('Executive');
-    this.supportDepartment$ = this.employeesStore.filterByDepartment('Support');
-  }
-
-
+  //
   selectDepartment(option: string) {
-    console.log('Selected option:', option);
-    // Handle the selected option here
+    if (option === this.departmentDropdownDefault) {
+      this.setEmployeeList(this.employeesStore.employees$);
+      return;
+    }
+
+    this.setEmployeeList(this.employeesStore.filterByDepartment(option));
   }
 
+  private setEmployeeList(newEmployeeList: Observable<IEmployee[]>) {
+    this.availableEmployees$ = newEmployeeList.pipe(map(employees => employees.sort(this.sortByDescDate)));
+  }
 
-
-
+  private sortByDescDate(objA: IEmployee, objB: IEmployee) {
+    return new Date(objB.dateOfHire).getTime() - new Date(objA.dateOfHire).getTime();
+  }
 }
