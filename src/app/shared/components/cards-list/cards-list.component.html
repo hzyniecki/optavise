@@ -1,5 +1,5 @@
 <div class="card-grid">
-  <div *ngFor="let employee of employeesList$ | async" class="card-container">
+  <div *ngFor="let employee of employeesList$ | paginate: { itemsPerPage: 6, currentPage: page }" class="card-container">
     <div class="avatar-container">
       <img class="avatar" [src]="buildPngSrc(employee)" alt="Employee Avatar"  />
     </div>
@@ -14,3 +14,34 @@
   </div>
   </div>
 </div>
+
+<div class="pagination-container">
+  <pagination-template
+  #pagination="paginationApi"
+  (pageChange)="onPageEvent($event)"
+>
+
+  <span class="pagination-previous" [class.disabled]="pagination.isFirstPage()">
+      <span *ngIf="!pagination.isFirstPage()" (click)="pagination.previous()">
+        <img class="arrow-left" alt="arrow-left" src="../assets/svgs/arrow-right.svg" />
+      </span>
+  </span>
+
+  <div *ngFor="let page of pagination.pages" [class.current]="pagination.getCurrent() === page.value">
+      <span (click)="pagination.setCurrent(page.value)" *ngIf="pagination.getCurrent() !== page.value">
+          <span>{{ page.label }}</span>
+      </span>
+      <div *ngIf="pagination.getCurrent() === page.value">
+          <span>{{ page.label }}</span>
+      </div>
+  </div>
+
+  <span class="pagination-next" [class.disabled]="pagination.isLastPage()">
+      <span *ngIf="!pagination.isLastPage()" (click)="pagination.next()">
+        <img class="arrow-right" alt="arrow-right" src="../assets/svgs/arrow-right.svg" />
+      </span>
+  </span>
+
+</pagination-template>
+</div>
+

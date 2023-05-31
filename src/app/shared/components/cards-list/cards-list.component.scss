@@ -10,7 +10,7 @@
 .card-container {
   background-color: #fff;
   padding: 2px 16px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.1);
   transition: 0.3s;
   width: 400px;
   height: 150px;
@@ -19,6 +19,7 @@
   grid-template-columns: auto auto auto;
   justify-content: start;
   padding-top: 10px;
+  margin: 10px 0 20px 0;
 }
 
 .employee-details-container {
@@ -34,7 +35,7 @@
 }
 
 .position {
-  color: #bec2ca;
+  color: #6E6F81;
 }
 
 .tags-margin {
@@ -50,7 +51,7 @@
 
 .marital-status, .department {
   background-color: #dbeafe;
-  color: #5e79ca;
+  color: #4463C1;
 }
 
 .margin-left {
@@ -73,4 +74,41 @@
   width: 140px;
 }
 
+.pagination-container {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  border-top: solid 1.5px #edeef0;
+}
+
+.arrow-right, .arrow-left {
+  width: 25px;
+  height: 25px;
+  filter: invert(78%) sepia(7%) saturate(452%) hue-rotate(178deg) brightness(84%) contrast(83%);
+  cursor: pointer;
+  margin-bottom: -5px;
+  user-select: none;
+}
+
+.arrow-left {
+  transform: rotate(180deg);
+
+}
+
+pagination-template {
+  display: flex;
+  align-items: center;
+}
+
+pagination-template > div {
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.current {
+  color: #7ca1f2;
+  border-top: solid 2px #7ca1f2;
+}
 

@@ -8,17 +8,19 @@ import { CardsListComponent } from './shared/components/cards-list/cards-list.co
 import { DropdownComponent } from './shared/components/dropdown/dropdown.component';
 import { EmployeesStore } from './core/store/employees.store';
 import { DepartmentsStore } from './core/store/departments.store';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
     HomeComponent,
     CardsListComponent,
-    DropdownComponent
+    DropdownComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     DepartmentsStore,
