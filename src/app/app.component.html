@@ -5,8 +5,7 @@
   [options]="departmentDropDownOptions$ | async"
   (optionSelected)="selectDepartment($event)"></optavise-dropdown>
 </div>
-<hr>
- <optavise-cards-list [employeesList$]="availableEmployees$"></optavise-cards-list>
+ <optavise-cards-list [employeesList$]="availableEmployees$ | async"></optavise-cards-list>
 
 
   <!-- Footer -->
